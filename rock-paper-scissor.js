@@ -21,57 +21,75 @@ function getHumanChoice(){
       
     return humanChoice;
 }
+//Play game function
+function playGame(){
 //Function to play a rock-paper-scissors round
 function playRound(humanChoice,computerChoice){
     humanChoice = humanChoice.toLowerCase();
     if(humanChoice ==="paper"){
         if(computerChoice ==="paper"){
-            console.log("You choice " + humanChoice +" Computer Choice "+ computerChoice )
-            console.log("Tie " + "player score "+ humanScore + " Computer score "+ computerScore);
+            printChoices(humanChoice,computerChoice);
+           return "Tie";
         }else if(computerChoice ==="rock"){
             humanScore++;
-              console.log("You choice " + humanChoice +" Computer Choice "+ computerChoice )
-              console.log("You win " + "player score "+ humanScore + " Computer score "+ computerScore);
+            printChoices(humanChoice,computerChoice);
+            return "You win";
         }else if(computerChoice === "scissors"){
             computerScore++;
-            console.log("You choice " + humanChoice +" Computer Choice "+ computerChoice )
-             console.log("You lose " + "player score "+ humanScore + " Computer score "+ computerScore);
+            printChoices(humanChoice,computerChoice);
+           return "You lose";
         }
     } else if(humanChoice ==="scissors"){
         if(computerChoice ==="scissors"){
-            console.log("You choice " + humanChoice +" Computer Choice "+ computerChoice )
-            console.log("Tie " + "player score "+ humanScore + " Computer score "+ computerScore);
+           printChoices(humanChoice,computerChoice);
+           return "Tie";
         }else if(computerChoice ==="rock"){
-            computerScore++;
-             
-              console.log("You choice " + humanChoice +" Computer Choice "+ computerChoice )
-              console.log("You lose " + "player score "+ humanScore + " Computer score "+ computerScore);
+             computerScore++;
+            printChoices(humanChoice,computerChoice);
+             return "You lose";
         }else if(computerChoice === "paper"){
             humanScore++;
-            console.log("You choice " + humanChoice +" Computer Choice "+ computerChoice )
-             console.log("You win " + "player score "+ humanScore + " Computer score "+ computerScore);
+            printChoices(humanChoice,computerChoice);
+            return "You win";
         }
     } else if(humanChoice ==="rock"){
          if(computerChoice ==="rock"){
-            console.log("You choice " + humanChoice +" Computer Choice "+ computerChoice )
-            console.log("Tie " + "player score "+ humanScore + " Computer score "+ computerScore);
+            printChoices(humanChoice,computerChoice);
+            return "Tie";
         }else if(computerChoice ==="paper"){
+            printChoices(humanChoice,computerChoice);
             computerScore++;
-             
-              console.log("You choice " + humanChoice +" Computer Choice "+ computerChoice )
-              console.log("You lose " + "player score "+ humanScore + " Computer score "+ computerScore);
+            return "You lose";
         }else if(computerChoice === "scissors"){
+            printChoices(humanChoice,computerChoice);
             humanScore++;
-            console.log("You choice " + humanChoice +" Computer Choice "+ computerChoice )
-             console.log("You win " + "player score "+ humanScore + " Computer score "+ computerScore);
+            return "You win";
         }
 
     }
 }
 
-
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+// console.log("You choice " + humanChoice +" Computer Choice "+ computerChoice )
+// console.log("Tie " + "player score "+ humanScore + " Computer score "+ computerScore);
+ let Rounds = 5;
+ do{
+  const humanSelection = getHumanChoice();
+  const computerSelection = getComputerChoice();
 
 playRound(humanSelection,computerSelection);
+Rounds--;
+    
+ }while(Rounds> 0)
+    if(humanScore > computerScore){
+        console.log("Your score " + humanScore +" Computer score "+ computerScore + " You win" );
+    }else if(humanScore < computerScore){
+         console.log("Your score " + humanScore +" Computer score "+ computerScore + " You lose" ); 
+    }else{
+        console.log("Its a tie");
+    }
+}
 
+function printChoices(playerChoice,computer){
+    console.log(`Your choice ${playerChoice}  computer choice ${computer} `);
+}
+playGame();
